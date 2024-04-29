@@ -32,4 +32,4 @@ jobs:
           ssh-keyscan -H ${{secrets.SSH_HOST}} > ~/.ssh/known_hosts
       - name: connect and update
         run: |
-          ssh -i ~/.ssh/id_rsa ${{secrets.SSH_USER}}@${{secrets.SSH_HOST}} 'docker stop django-demo && docker rm django-demo && docker pull sebas2409/django-demo:${{ github.sha }} && docker run -d -p 8000:8000 --name django-demo sebas2409/django-demo:${{ github.sha }}'
+          ssh -i ~/.ssh/id_rsa ${{secrets.SSH_USER}}@${{secrets.SSH_HOST}} 'docker ps | grep django-demo && docker stop django-demo && docker rm django-demo || echo "no container running" && docker pull sebas2409/django-demo:${{ github.sha }} && docker run -d -p 8000:8000 --name django-demo sebas2409/django-demo:${{ github.sha }}'
