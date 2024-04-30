@@ -20,7 +20,7 @@ from django.urls import path
 import playground.views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('ping/', playground.views.ping),
-    path('', playground.views.index),
+    path('admin/', admin.site.urls, name='admin'),
+    path('ping/', playground.views.ping, name='ping'),
+    path('', playground.views.index, name='index'),
 ]

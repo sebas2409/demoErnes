@@ -3,7 +3,7 @@ from django.http import HttpResponse
 
 
 def ping(request):
-    return HttpResponse('Hello world')
+    return HttpResponse('Pong!')
 
 
 def index(request):
