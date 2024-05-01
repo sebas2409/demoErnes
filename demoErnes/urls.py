@@ -23,4 +23,5 @@ urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
     path('ping/', playground.views.ping, name='ping'),
     path('', playground.views.index, name='index'),
+    path('date', playground.views.date, name='date')
 ]
