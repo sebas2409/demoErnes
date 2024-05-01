@@ -24,7 +24,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: sebas2409/django-demo:${{ github.sha::8 }}
+          tags: sebas2409/django-demo:${{ github.sha[0:8] }}
       - name: install ssh keys
         run: |
           install -m 600 -D /dev/null ~/.ssh/id_rsa
@@ -32,4 +32,4 @@ jobs:
           ssh-keyscan -H ${{secrets.SSH_HOST}} > ~/.ssh/known_hosts
       - name: connect and update
         run: |
-          ssh -i ~/.ssh/id_rsa ${{secrets.SSH_USER}}@${{secrets.SSH_HOST}} 'docker ps | grep django-demo && docker stop django-demo && docker rm django-demo || echo "no container running" && docker pull sebas2409/django-demo:${{ github.sha::8 }} && docker run -d -p 8000:8000 --name django-demo sebas2409/django-demo:${{ github.sha::8 }}'
+          ssh -i ~/.ssh/id_rsa ${{secrets.SSH_USER}}@${{secrets.SSH_HOST}} 'docker ps | grep django-demo && docker stop django-demo && docker rm django-demo || echo "no container running" && docker pull sebas2409/django-demo:${{ github.sha[0:8] }} && docker run -d -p 8000:8000 --name django-demo sebas2409/django-demo:${{ github.sha[0:8] }}'
